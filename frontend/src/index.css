@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+@theme {
+  /* Gruvbox Dark palette */
+  --color-gruvbox-bg-h: #1d2021;
+  --color-gruvbox-bg: #282828;
+  --color-gruvbox-bg1: #3c3836;
+  --color-gruvbox-bg2: #504945;
+  --color-gruvbox-bg3: #665c54;
+  --color-gruvbox-bg4: #7c6f64;
+  --color-gruvbox-fg: #ebdbb2;
+  --color-gruvbox-fg0: #fbf1c7;
+  --color-gruvbox-fg2: #d5c4a1;
+  --color-gruvbox-fg3: #bdae93;
+  --color-gruvbox-fg4: #a89984;
+  --color-gruvbox-red: #fb4934;
+  --color-gruvbox-green: #b8bb26;
+  --color-gruvbox-yellow: #fabd2f;
+  --color-gruvbox-blue: #83a598;
+  --color-gruvbox-purple: #d3869b;
+  --color-gruvbox-aqua: #8ec07c;
+  --color-gruvbox-orange: #fe8019;
+  --color-gruvbox-gray: #928374;
+
+  /* Stem colors mapped to gruvbox */
+  --color-stem-vocals: #83a598;
+  --color-stem-other: #d3869b;
+  --color-stem-piano: #b8bb26;
+  --color-stem-guitar: #fe8019;
+  --color-stem-drums: #fb4934;
+  --color-stem-bass: #fabd2f;
+}
+
+body {
+  margin: 0;
+  background: #1d2021;
+  color: #ebdbb2;
+  font-family: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #282828;
+}
+::-webkit-scrollbar-thumb {
+  background: #504945;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #665c54;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: #504945;
+  border-radius: 2px;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ebdbb2;
+  cursor: pointer;
+  border: 2px solid #3c3836;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: #fbf1c7;
+}
+
+/* Smooth transitions */
+button {
+  transition: all 0.15s ease;
+}
+
+/* Running-node border flicker: discrete keyframe steps via step-end so the
+   opacity snaps between levels rather than tweens smoothly — reads as a
+   few-frame fade rather than a continuous pulse. Applied to an overlay
+   border that sits on top of a dimmed base border; together they produce
+   a border that blinks without changing the node's bounding box. */
+@keyframes node-border-flicker {
+  0%   { opacity: 1; }
+  20%  { opacity: 0.65; }
+  40%  { opacity: 0.3; }
+  60%  { opacity: 0.1; }
+  80%  { opacity: 0.5; }
+}
+.animate-node-border-flicker {
+  animation: node-border-flicker 2s step-end infinite;
+}
+
+/* Neutralize xyflow default node box — our custom nodes provide their own */
+.react-flow__node {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  width: auto !important;
+  color: inherit !important;
+  font-size: inherit !important;
+  text-align: left !important;
+}
+.react-flow__node.selected > div {
+  outline: 2px solid #fabd2f;
+  outline-offset: 1px;
+}
+
+/* Selected edge: thick yellow path */
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #fabd2f !important;
+  stroke-width: 5.5 !important;
+}
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke-width: 5 !important;
+}
+
+/* Controls (bottom-left zoom / fit / lock buttons) — gruvbox */
+.react-flow__controls {
+  box-shadow: none !important;
+}
+.react-flow__controls-button {
+  background: #282828 !important;
+  border-bottom: 1px solid #3c3836 !important;
+  color: #bdae93 !important;
+  fill: #bdae93 !important;
+  width: 24px !important;
+  height: 24px !important;
+}
+.react-flow__controls-button:hover {
+  background: #3c3836 !important;
+  color: #ebdbb2 !important;
+  fill: #ebdbb2 !important;
+}
+.react-flow__controls-button svg {
+  fill: currentColor !important;
+}
+.react-flow__controls-button:last-child {
+  border-bottom: none !important;
+}

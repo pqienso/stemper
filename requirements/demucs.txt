@@ -1,0 +1,18 @@
+--extra-index-url https://download.pytorch.org/whl/cu118
+matplotlib==3.9.2
+numpy==1.26.4
+pillow==11.1.0
+torch==2.0.1
+torchaudio==2.0.2
+torchvision==0.15.2
+tqdm==4.67.1
+soundfile==0.13.1
+submitit==1.5.2
+yt-dlp
+pandas==2.3.2
+demucs @ git+https://github.com/facebookresearch/demucs#egg=demucs
+pyloudnorm==0.1.1
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+pydantic>=2.0.0
+python-multipart>=0.0.9
